@@ -50,7 +50,7 @@ defmodule SatZendeskBotEx do
     |> Map.merge(%{footer_icon: icon, footer: name})
   end
 
-  def send_sat_message(attachments, slack) do
+  def send_sat_message(attachments, _slack) do
       IO.puts(IO.ANSI.green() <> "Sending to SAT monitoring room" <> IO.ANSI.reset())
 
       Slack.Web.Chat.post_message(
