@@ -10,6 +10,8 @@ defmodule SatZendeskBotEx do
     |> File.read!
     |> String.strip)
 
+  def token, do: @token
+
   def handle_connection(slack) do
     IO.puts "Connected as #{slack.me.name}"
   end
@@ -82,7 +84,7 @@ defmodule BotApplication do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
     Supervisor.start_link(
-      [supervisor(SatZendeskBotEx, [@token])],
+      [supervisor(SatZendeskBotEx, [SatZendeskBotEx.token()])],
       [strategy: :one_for_one, name: BotSupervisor])
   end
 end
